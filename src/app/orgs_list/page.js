@@ -1,5 +1,7 @@
+import InfoPage from "@/components/InfoPage";
+
 export default function ListOrg(){
     return(<div>
-        ALl listtt
+        <InfoPage />
     </div>);
 }
