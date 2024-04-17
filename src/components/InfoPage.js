@@ -5,13 +5,13 @@ export default function InfoPage(){
         <div className={polt_nowy.className+" flex flex-col items-center"}>
             <div className="m-16 px-12 pt-12 flex flex-col bg-white/20 text-black isolate aspect-video w-1/3 rounded-xl shadow-lg ring-1 ring-black/15">
                 <div className="flex text-5xl">
-                    Nuvo Trees
+                Save Ocean
                 </div>
                 <div className="flex subpixel-antialiased font-thin text-xl ps-5 my-10">
-                    asdjnjsabjksnjksnajsdnjsadnsajdnj
+                    Provide your valuable contribution to clean the oceans
                 </div>
                 <div className="flex text-l font-thin ps-5 text-xl">
-                    Fund Goal : 
+                    Fund Goal : 1,000
                 </div>
             </div>
 

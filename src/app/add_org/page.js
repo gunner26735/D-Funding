@@ -1,5 +1,7 @@
+import AddNewOrg from "@/components/AddNewOrg";
+
 export default function AddOrg(){
     return(<div>
-        NEW ORG's
+        <AddNewOrg />
     </div>);
 }

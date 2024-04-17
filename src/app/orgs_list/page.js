@@ -1,7 +1,7 @@
-import InfoPage from "@/components/InfoPage";
+import OrgList from "@/components/OrgList";
 
-export default function ListOrg(){
+export default function ShowAllOrgs(){
     return(<div>
-        <InfoPage />
+        <OrgList />        
     </div>);
 }
