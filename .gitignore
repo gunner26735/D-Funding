@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hardhat
+*.solved.js
+cache
+.openzeppelin
+.vscode
+artifacts
+cache
+*secrets*
