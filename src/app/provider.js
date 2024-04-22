@@ -49,7 +49,7 @@ export function Providers({ children }) {
       contractWrite = new ethers.Contract(contractAddress, orgABI, signer);
     }
     loadContractsDefault();
-  },[])
+  },[account])
   
  
   return (

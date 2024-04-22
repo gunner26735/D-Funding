@@ -1,15 +1,44 @@
 "use client";
 import { useState } from "react";
 import { contractWrite } from "@/app/provider";
+import { toast } from "react-toastify";
 
 export default function AddNewOrg() {
 
-    const [orgName,setOrgName] = useState("");
-    const [orgDesc,setOrgDesc] = useState("");
-    const [orgFundGoal,setOrgFundGoal] = useState(0);
-    
-    async function doAddOrg(){
-        console.log(orgFundGoal);
+    const [orgName, setOrgName] = useState("");
+    const [orgAddress, setOrgAddress] = useState("");
+    const [orgDesc, setOrgDesc] = useState("");
+    const [orgFundGoal, setOrgFundGoal] = useState(0);
+
+    async function doAddOrg() {
+        try {
+            const response = await contractWrite.addOrg(orgAddress, orgName, orgDesc, orgFundGoal);
+            toast.success("Organization Added Successfully", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                style: {'font-weight': 'bold',},
+            });
+        }
+        catch (err) {
+            console.log(err.reason);
+            toast.error(err.reason, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                style: {'font-weight': 'bold',},
+            });
+        }
     }
 
     return (
@@ -21,37 +50,47 @@ export default function AddNewOrg() {
                     </svg>
                     <h1 className="tracking-wide text-3xl text-gray-900">Add New Organization</h1>
                 </div>
-                <form id="login_form" onSubmit={(e)=>e.preventDefault()} className="flex flex-col justify-center">
-                    
+                <form id="login_form" onSubmit={(e) => e.preventDefault()} className="flex flex-col justify-center">
+
+                    <label className="text-sm font-medium">Org Wallet Address</label>
+                    <input className="mb-3 px-2 py-1.5 mt-1 block w-full border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                focus:outline-none
+                                focus:border-sky-500
+                                focus:ring-1
+                                focus:ring-sky-500
+                                focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="0xD11fD1...F161"
+                        onChange={(e) => setOrgAddress(e.target.value)} />
+
                     <label className="text-sm font-medium">Org Name / Fund Title</label>
                     <input className="mb-3 px-2 py-1.5 mt-1 block w-full border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                 focus:outline-none
                                 focus:border-sky-500
                                 focus:ring-1
                                 focus:ring-sky-500
-                                focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="Save Ocean..." 
-                                onChange={(e)=>setOrgName(e.target.value)}/>
-                        <label className="text-sm font-medium">Description</label>
-                        <textarea className="
+                                focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="Save Ocean..."
+                        onChange={(e) => setOrgName(e.target.value)} />
+
+                    <label className="text-sm font-medium">Description</label>
+                    <textarea className="
                                 mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                 focus:outline-none
                                 focus:border-sky-500
                                 focus:ring-1
                                 focus:ring-sky-500
                                 focus:invalid:border-red-500 focus:invalid:ring-red-500" name="messages" placeholder="Write something"
-                                onChange={(e)=>setOrgDesc(e.target.value)}></textarea>
-                        <label className="text-sm font-medium">Fund Goal</label>
-                        <input className="mb-3 px-2 py-1.5 mt-1 block w-full border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                        onChange={(e) => setOrgDesc(e.target.value)}></textarea>
+                    <label className="text-sm font-medium">Fund Goal</label>
+                    <input className="mb-3 px-2 py-1.5 mt-1 block w-full border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                 focus:outline-none
                                 focus:border-sky-500
                                 focus:ring-1
                                 focus:ring-sky-500
-                                focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="1000" 
-                                onChange={(e)=>setOrgFundGoal(e.target.value)}/>
-                        <button className="px-4 py-1.5 rounded-md shadow-lg bg-gradient-to-r from-pink-600 to-red-600 font-medium text-gray-100 block transition duration-300" type="submit">
-                            <span id="login_process_state" className="hidden">Sending</span>
-                            <span id="login_default_state" onClick={doAddOrg}>Submit<span id="subtotal"></span></span>
-                        </button>
+                                focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="1000"
+                        onChange={(e) => setOrgFundGoal(e.target.value)} />
+                    <button className="px-4 py-1.5 rounded-md shadow-lg bg-gradient-to-r from-pink-600 to-red-600 font-medium text-gray-100 block transition duration-300" type="submit">
+                        <span id="login_process_state" className="hidden">Sending</span>
+                        <span id="login_default_state" onClick={doAddOrg}>Submit<span id="subtotal"></span></span>
+                    </button>
                 </form>
             </div>
         </section>
