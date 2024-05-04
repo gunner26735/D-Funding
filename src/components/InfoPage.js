@@ -1,4 +1,6 @@
 import { polt_nowy } from "@/app/fonts";
+import { orgABI, contractAddress } from "@/app/provider";
+import { useReadContract } from "wagmi";
 
 export default function InfoPage(){
     return(

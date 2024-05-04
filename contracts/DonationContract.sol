@@ -17,6 +17,9 @@ contract DonationManagement {
     }
     mapping (address => org_info) org_details;
 
+    //Org Suplicate to fetch all Orgs
+    org_info[] private OrgsFetchedList;
+
     // Org's Addresses
     address[] orgsAddressList;
 
@@ -41,6 +44,11 @@ contract DonationManagement {
         
         //storing org address
         orgsAddressList.push(_orgAddress);
+
+        //storing orgs data into fetched org array 
+        OrgsFetchedList.push(
+            org_info(_orgName,_orgDesc,_orgGoal,true)
+        );
     }
 
     // TO change Org Status
@@ -58,6 +66,11 @@ contract DonationManagement {
     // gives details about an organisation
     function getOrgInfo(address _orgAddress) view public returns(org_info memory){
         return org_details[_orgAddress];
+    }
+
+    // gives details about all the organisation
+    function getAllOrgInfo() view public returns(org_info[] memory){
+        return OrgsFetchedList;
     }
 
     // adds a new donations made by user to an Org

@@ -26,8 +26,10 @@ const config = getDefaultConfig({
 const queryClient = new QueryClient();
 
 export var account;
+export var provider;
 const abiJSON = require("../../artifacts/contracts/DonationContract.sol/DonationManagement.json");
-const orgABI = abiJSON.abi;
+export const orgABI = abiJSON.abi;
+export const contractAddress = '0xe318bfc9ccd58f77db810c5ac204442820f61230';
 export var contractRead,contractWrite;
 
 export function Providers({ children }) {
@@ -38,9 +40,8 @@ export function Providers({ children }) {
 
   React.useEffect(()=>{
     const loadContractsDefault = async ()=> {
-      const provider = new ethers.BrowserProvider(window.ethereum)
+      provider = new ethers.BrowserProvider(window.ethereum)
       const signer = await provider.getSigner();
-      const contractAddress = '0x2379D827779BD9C29f9b7F3f7519651425D58fD1';
       contractRead = new ethers.Contract(
         contractAddress,
         orgABI,
