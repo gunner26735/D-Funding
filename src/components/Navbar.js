@@ -1,5 +1,6 @@
 import React from "react";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Link from "next/link";
 
 export default function Navbar(){
     return (
@@ -15,15 +16,15 @@ export default function Navbar(){
                             </div>
                         </div>
                         <div className="ml-4 flex items-center space-x-4">
-                            <a href="/" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg">
+                            <Link href="/" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg">
                                 Home
-                            </a>
-                            <a href="/add_org" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg">
+                            </Link>
+                            <Link href="/add_org" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg">
                                 AddOrg
-                            </a>
-                            <a href="/orgs_list" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg">
+                            </Link>
+                            <Link href="/orgs_list" className="p-2 font-bold text-white hover:bg-white hover:text-black rounded-lg" prefetch={true}>
                                 Start Here
-                            </a>
+                            </Link>
                             <span className="text-white hover:bg-white hover:text-black rounded-lg mx-5 ">
                                 <ConnectButton />
                             </span>
