@@ -40,14 +40,16 @@ export function Providers({ children }) {
 
   React.useEffect(()=>{
     const loadContractsDefault = async ()=> {
-      provider = new ethers.BrowserProvider(window.ethereum)
-      const signer = await provider.getSigner();
-      contractRead = new ethers.Contract(
-        contractAddress,
-        orgABI,
-        provider
-      );
-      contractWrite = new ethers.Contract(contractAddress, orgABI, signer);
+      if(account != null){
+        provider = new ethers.BrowserProvider(window.ethereum)
+        const signer = await provider.getSigner();
+        contractRead = new ethers.Contract(
+          contractAddress,
+          orgABI,
+          provider
+        );
+        contractWrite = new ethers.Contract(contractAddress, orgABI, signer);
+      }
     }
     loadContractsDefault();
   },[account])

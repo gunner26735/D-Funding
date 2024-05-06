@@ -24,7 +24,7 @@ export default function AddNewOrg() {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-                style: {'font-weight': 'bold',},
+                style: {'fontWeight': 'bold',},
             });
         }
         catch (err) {
@@ -38,7 +38,7 @@ export default function AddNewOrg() {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-                style: {'font-weight': 'bold',},
+                style: {'fontWeight': 'bold',},
             });
         }
     }
