@@ -74,10 +74,10 @@ contract DonationManagement {
     }
 
     // adds a new donations made by user to an Org
-    function makeDonation(address _reciver,uint256 amount,string memory _txhash) public payable {
+    function makeDonation(address _sender,address _reciver,uint256 amount,string memory _txhash) public payable {
         require(amount > 0, "Donation must be > 0 to proceed");
         org_collections[_reciver] += amount;
-        donation_details[_reciver].push(donation_info(msg.sender,amount,_txhash));
+        donation_details[_reciver].push(donation_info(_sender,amount,_txhash));
     }
 
     // to list all the donations of an org
