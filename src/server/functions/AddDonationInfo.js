@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 import { contractAddress, orgABI } from "@/app/provider";
-// const ethers = require('ethers');
 
 export default function AddDonationInfo(_sender, _receiver, _txhash) {
 

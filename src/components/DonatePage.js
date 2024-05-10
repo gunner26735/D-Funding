@@ -10,14 +10,13 @@ export default function DonatePage(orgAddress) {
     const [donateAmount, setDonateAmount] = useState(0.000);
 
     async function doDonation() {
-        console.log("donate");
-        console.log(typeof(donateAmount));
-        console.log(donateAmount);
+        const oneUSDInWei = 10**18 / 2998.88;
+        const donationInWei = BigInt(donateAmount * oneUSDInWei);
         try {
             const signer = await provider.getSigner();
             const tx = await signer.sendTransaction({
                 to: orgAddress.orgAddress,
-                value: parseEther(donateAmount),
+                value: donationInWei,
             });
             console.log(await tx);
             tx.wait().then(async (data) => {

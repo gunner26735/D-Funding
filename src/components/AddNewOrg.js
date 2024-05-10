@@ -10,11 +10,13 @@ export default function AddNewOrg() {
     const [orgDesc, setOrgDesc] = useState("");
     const [orgFundGoal, setOrgFundGoal] = useState(0);
     const addOrgButton = document.getElementById('login_default_state');
+    const oneUSDInWei = 10**18 / 2998.88;
 
     async function doAddOrg() {
         try {
+            const donationInWei = BigInt(orgFundGoal * oneUSDInWei);
             addOrgButton.disabled = true;
-            const response = await contractWrite.addOrg(orgAddress, orgName, orgDesc, orgFundGoal);
+            const response = await contractWrite.addOrg(orgAddress, orgName, orgDesc,donationInWei);
             toast.success("Organization Added Successfully", {
                 position: "top-right",
                 autoClose: 5000,
@@ -28,7 +30,7 @@ export default function AddNewOrg() {
             });
         }
         catch (err) {
-            console.log(err.reason);
+            console.log(err);
             toast.error(err.reason, {
                 position: "top-right",
                 autoClose: 5000,
@@ -40,6 +42,7 @@ export default function AddNewOrg() {
                 theme: "dark",
                 style: {'fontWeight': 'bold',},
             });
+            addOrgButton.disabled = false;
         }
     }
 

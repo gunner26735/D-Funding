@@ -10,6 +10,7 @@ export default function TransactionList(_orgAddress) {
         address: contractAddress,
         functionName: 'listDonations',
         args: [_orgAddress._orgAddress],
+        chainId: 11155111,
     });
     console.log(_orgAddress._orgAddress);
     if (orgTransactionDataFetched) {
@@ -24,8 +25,8 @@ export default function TransactionList(_orgAddress) {
                     </tr>
                 </thead>
                 <tbody>
-                    {orgTrasactionData.map((orgTx) =>(
-                        <tr>
+                    {orgTrasactionData.map((orgTx,index) =>(
+                        <tr key={index}>
                             <td className="text-md px-6 py-3">{orgTx['donor_addr']}</td>
                             <td className="text-md px-6 py-3">{orgTx['txhash']}</td>
                             <td className="text-md px-6 py-3">{parseInt(orgTx['donation'])}</td>

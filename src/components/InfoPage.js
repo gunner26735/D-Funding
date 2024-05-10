@@ -5,6 +5,7 @@ import { orgABI, contractAddress } from "@/app/provider";
 import { useReadContract } from "wagmi";
 
 import TransactionList from "./orgs/TransactionList";
+import weiToUSD from "@/app/functions/weiToUSD";
 
 export default function InfoPage({ orgAddress }) {
 
@@ -26,7 +27,7 @@ export default function InfoPage({ orgAddress }) {
                         {orgData['org_desc']}
                     </div>
                     <div className="flex text-l font-thin ps-5 text-xl">
-                        {"Fund Goal : " + orgData['org_goal']}
+                        {"Fund Goal : $" + weiToUSD(orgData['org_goal'])}
                     </div>
                 </div>
 
