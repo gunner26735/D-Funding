@@ -2,6 +2,7 @@
 
 import { orgABI, contractAddress } from "@/app/provider";
 import { useReadContract } from "wagmi";
+import weiToUSD from "@/app/functions/weiToUSD";
 
 export default function TransactionList(_orgAddress) {
 
@@ -29,7 +30,7 @@ export default function TransactionList(_orgAddress) {
                         <tr key={index}>
                             <td className="text-md px-6 py-3">{orgTx['donor_addr']}</td>
                             <td className="text-md px-6 py-3">{orgTx['txhash']}</td>
-                            <td className="text-md px-6 py-3">{parseInt(orgTx['donation'])}</td>
+                            <td className="text-md px-6 py-3">{"$"+weiToUSD(orgTx['donation'])}</td>
                         </tr>
                     ))}
                 </tbody>

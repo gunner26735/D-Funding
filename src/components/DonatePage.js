@@ -2,24 +2,26 @@
 
 import { useState } from "react";
 import { provider } from "@/app/provider";
-import { parseEther } from "viem";
 import { toast } from "react-toastify";
+import AddDonationInfo from "@/app/functions/AddDonationInfo";
 
 export default function DonatePage(orgAddress) {
 
     const [donateAmount, setDonateAmount] = useState(0.000);
 
     async function doDonation() {
-        const oneUSDInWei = 10**18 / 2998.88;
-        const donationInWei = BigInt(donateAmount * oneUSDInWei);
+        const oneUSDInWei = Number(10**18 / 2998.88);
+        const donationInWei = Number(donateAmount) * oneUSDInWei;
         try {
             const signer = await provider.getSigner();
             const tx = await signer.sendTransaction({
                 to: orgAddress.orgAddress,
-                value: donationInWei,
+                value: BigInt(Math.floor(donationInWei)),
             });
             console.log(await tx);
             tx.wait().then(async (data) => {
+                //adding tx info into smart contract
+                AddDonationInfo(data.from,data.to,BigInt(Math.floor(donationInWei)),data.hash);
                 console.log(data);
                 toast.success("Transaction made Successfully", {
                     position: "top-right",
